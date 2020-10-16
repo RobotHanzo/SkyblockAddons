@@ -4,3 +4,5 @@ rules:
     upstream: biscuitdevelopment:master
   - base: development
     upstream: biscuitdevelopment:development
+  - base: automatic-build
+    upstream: biscuitdevelopment:development
