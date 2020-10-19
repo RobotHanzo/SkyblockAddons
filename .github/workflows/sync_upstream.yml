@@ -20,8 +20,6 @@ jobs:
         run: "git remote add upstream https://github.com/BiscuitDevelopment/SkyblockAddons.git"
       - name: Fetch upstream
         run: git fetch upstream
-      - name: Get git-rebase-all executable
-        run: "wget https://raw.githubusercontent.com/nornagon/git-rebase-all/master/git-rebase-all"
       - name: Setup all tracking branches
         if: github.event_name != 'workflow_dispatch'
         run: "upstream=upstream ; for branch_name in `git branch -r | grep $upstream | grep -v master | grep -v HEAD | sed -e 's/.*\\///g'`; do git branch --track $branch_name  $upstream/$branch_name ; done"
