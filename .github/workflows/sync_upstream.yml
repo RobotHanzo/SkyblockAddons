@@ -29,4 +29,4 @@ jobs:
       - name: Rebase tracked branches
         run: "git pull --rebase --all"
       - name: Push all changes
-        run: "git push --all origin"
+        run: "git push --all --force origin"
