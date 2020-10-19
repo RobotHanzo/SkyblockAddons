@@ -25,7 +25,7 @@ jobs:
         run: "upstream=upstream ; for branch_name in `git branch -r | grep $upstream | grep -v master | grep -v HEAD | sed -e 's/.*\\///g'`; do git branch --track $branch_name  $upstream/$branch_name ; done"
       - name: Setup single tracking branch
         if: github.event_name == 'workflow_dispatch'
-        run: "git branch --track ${{ github.event.inputs.branch }}  $upstream/${{ github.event.inputs.branch }}"
+        run: "git branch --track ${{ github.event.inputs.branch }}  upstream/${{ github.event.inputs.branch }}"
       - name: Rebase tracked branches
         run: "git pull --rebase --all"
       - name: Push all changes
