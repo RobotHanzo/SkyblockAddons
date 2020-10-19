@@ -23,7 +23,7 @@ jobs:
         run: "wget https://raw.githubusercontent.com/nornagon/git-rebase-all/master/git-rebase-all"
       - name: Setup all tracking branches
         if: github.event_name != 'workflow_dispatch'
-        run: "upstream=upstream ; for branch_name in `git branch -r | grep $upstream | grep -v master | grep -v HEAD | sed -e 's/.*\///g'`; do git branch --track $branch_name  $upstream/$branch_name ; done"
+        run: "upstream=upstream ; for branch_name in `git branch -r | grep $upstream | grep -v master | grep -v HEAD | sed -e 's/.*\\///g'`; do git branch --track $branch_name  $upstream/$branch_name ; done"
       - name: Setup single tracking branch
         if: github.event_name == 'workflow_dispatch'
         run: "git branch --track ${{ github.event.inputs.branch }}  $upstream/${{ github.event.inputs.branch }}"
