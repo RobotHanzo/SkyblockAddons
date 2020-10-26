@@ -24,7 +24,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Alternate origin to user specified
-      if: github.event_name == 'workflow_dispatch' && ${{ github.event.inputs.remote }} != ''
+      if: ${{ github.event.inputs.remote != '' }}
       run: |
         git remote remove origin
         git remote add origin ${{ github.event.inputs.remote }}
