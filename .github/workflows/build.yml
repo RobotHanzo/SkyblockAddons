@@ -11,6 +11,9 @@ on:
         description: 'The branch to build'
         required: true
         default: 'automatic-build'
+      remote:
+        descriptoin: 'The custom remote link, e.g. https://github.com/RobotHanzo/SkyblockAddons'
+        required: false
 jobs:
   build:
     name: Build
@@ -20,6 +23,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Alternate origin to user specified
+      if: github.event_name == 'workflow_dispatch' && ${{ github.event.inputs.remote }} != ''
+      run: |
+        git remote remove origin
+        git remote add origin ${{ github.event.inputs.remote }}
     - name: Check out to the branch user specified
       if: github.event_name == 'workflow_dispatch'
       run: |
