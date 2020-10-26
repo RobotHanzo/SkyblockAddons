@@ -30,3 +30,8 @@ jobs:
         run: "git pull --rebase --all"
       - name: Push all changes
         run: "git push --all --force origin"
+      - name: Delete this run
+        uses: RobotHanzo/delete-workflow-runs@main
+        with:
+          token: ${{ secrets.TOKEN }}
+          repository: ${{ github.repository }}
