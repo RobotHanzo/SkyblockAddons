@@ -34,4 +34,4 @@ jobs:
           git pull origin ${{ github.event.inputs.local_branch }}
           git pull --rebase upstream ${{ github.event.inputs.upstream_branch }}
       - name: Push all changes
-        run: "git push --all origin"
+        run: "git push --all --force origin"
