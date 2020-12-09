@@ -1,0 +1,29 @@
+name: Rebase with upstream
+
+on:
+  workflow_dispatch:
+    inputs:
+      upstream_branch:
+        description: 'The branch to rebase with upstream'
+        required: true
+        default: 'development'
+      local_branch:
+        description: 'The local branch to be rebased by'
+        required: true
+
+jobs:
+  rebase:
+    name: Rebase with upstream
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Add remotes
+        run: "git remote add upstream https://github.com/BiscuitDevelopment/SkyblockAddons.git"
+      - name: Fetch upstream
+        run: git fetch upstream
+      - name: Checkout to branch that is about to be rebased
+        run: "git checkout ${{ github.event.inputs.local_branch }}"
+      - name: Rebase tracked branches
+        run: "git pull --rebase upstream ${{ github.event.inputs.upstream_branch }}"
+      - name: Push all changes
+        run: "git push --all origin"
