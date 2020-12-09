@@ -30,6 +30,8 @@ jobs:
       - name: Checkout to branch that is about to be rebased
         run: "git checkout ${{ github.event.inputs.local_branch }}"
       - name: Rebase tracked branches
-        run: "git pull --rebase upstream ${{ github.event.inputs.upstream_branch }}"
+        run: |
+          git pull origin ${{ github.event.inputs.local_branch }}
+          git pull --rebase upstream ${{ github.event.inputs.upstream_branch }}
       - name: Push all changes
         run: "git push --all origin"
